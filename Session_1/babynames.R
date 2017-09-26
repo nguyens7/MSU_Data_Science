@@ -19,9 +19,9 @@ df
 
 # Filter ------------------------------------------------------------------
 
-michael <- df %>%
+Michael <- df %>%
   filter(name == "Michael")
-michael
+Michael
 
 Henry <- df %>%
   filter(name == "Henry")
@@ -30,6 +30,8 @@ mary <- df %>%
   filter(name == "Mary")
 mary
 
+
+# ggplot ------------------------------------------------------------------
 
 mary %>%
   ggplot(aes(x = year, y = n, color = sex))+
@@ -59,11 +61,40 @@ shawn %>%
   geom_line()
 
 
-temp <- df %>% 
-  filter(name == "Keara" | name == "Bob" | name == "Anya")
+# Filter multiple names ---------------------------------------------------
 
 df %>% 
-  filter(name %in% c("Keara", "Bob", "Anya"))
+  filter(name == "Larry" | name == "Carlos" | name == "Michelle" | name == "David")
+
+df %>% 
+  filter(name %in% c("Larry", "Carlos", "Michelle","David"))
+
+
+# Even better way
+friends <- c("Larry", "Carlos", "Michelle","David")
+
+df %>% 
+  filter(name %in% friends)
+
+df %>% 
+  filter(name %in% friends) %>% 
+  ggplot(aes(x = year, y = n, color = name))+
+  geom_line()
+
+# Facet to split plots
+df %>% 
+  filter(name %in% friends) %>% 
+  ggplot(aes(x = year, y = n, color = name))+
+  geom_line()+
+  facet_wrap(~sex)
+
+
+
+# Graph your name! --------------------------------------------------------
+
+df %>% 
+  filter(name == "")
+
 
 # Filter multiple criteria ------------------------------------------------
 
@@ -73,7 +104,7 @@ variations <- df %>%
 df %>% 
   filter(name %in% c("Sean","Shaun","Shawn"))
 
-df1 <- df %>%
+test <- df %>%
   filter(name == "Sean"|name == "Shaun"|name == "Shawn" & year== "1980") 
 
 df %>%
