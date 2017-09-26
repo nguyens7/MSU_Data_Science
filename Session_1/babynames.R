@@ -2,6 +2,11 @@
 rm(list=ls())
 graphics.off()
 
+# Install packages one time only
+# install.packages('tidyverse')
+# install.packages('babynames')
+# install.packages('cowplot')
+
 # Load libraries
 library(babynames)
 library(tidyverse)
@@ -18,11 +23,13 @@ michael <- df %>%
   filter(name == "Michael")
 michael
 
-Mike <- df %>%
-  filter(name == "Mike")
+Henry <- df %>%
+  filter(name == "Henry")
 
 mary <- df %>%
   filter(name == "Mary")
+mary
+
 
 mary %>%
   ggplot(aes(x = year, y = n, color = sex))+
@@ -52,7 +59,7 @@ shawn %>%
   geom_line()
 
 
-df %>% 
+temp <- df %>% 
   filter(name == "Keara" | name == "Bob" | name == "Anya")
 
 df %>% 
@@ -66,7 +73,7 @@ variations <- df %>%
 df %>% 
   filter(name %in% c("Sean","Shaun","Shawn"))
 
-df %>%
+df1 <- df %>%
   filter(name == "Sean"|name == "Shaun"|name == "Shawn" & year== "1980") 
 
 df %>%
